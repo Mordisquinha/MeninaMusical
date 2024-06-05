@@ -1,14 +1,4 @@
-from src.databases.sqlite.infra.repository.Music_Gallery_repository import MusicGalleryRepository
+from src.api import app
 
-musics = {
-    'music_name': 'Billionaire',
-    'music_publish_year': 1999
-}
-
-gallery = MusicGalleryRepository()
-# gallery.insertTitle(musics)
-data = gallery.selectWithSameYear(1999)
-# data = gallery.selectTitle('Hall Of Fame')
-# data = gallery.getPlaylist()
-
-print(data)
+if __name__ == "__main__":
+    app.run(port=8080, debug=True)
