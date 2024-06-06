@@ -1,4 +1,3 @@
-import json
 import sqlite3
 from random import shuffle
 from src.utils import ERROR
@@ -6,7 +5,7 @@ from  src.databases.sqlite.infra.tables.musicGallery.columns import schema
 from src.databases.sqlite.infra.configs.connection import DBConnectionHandler
 from src.databases.sqlite.infra.tables.musicGallery.Music_Gallery import MusicGallery
 
-class MusicGalleryRepository:
+class MusicGalleryRepository():
     def __init__(self) -> None:
         
         create_table = """
@@ -34,7 +33,7 @@ class MusicGalleryRepository:
             
             return output
 
-    def selectTitle(self, music_name):
+    def selectTitle(self, music_name:str) -> dict:
         with DBConnectionHandler() as db:
             music_name_formated = music_name.lower().replace(' ', '')
             data = db.session.query(MusicGallery).filter(MusicGallery.music_to_search == music_name_formated).all()
@@ -50,7 +49,7 @@ class MusicGalleryRepository:
             
             return output_json
         
-    def selectWithSameYear(self, music_publish_year):
+    def selectWithSameYear(self, music_publish_year:int) -> list:
         with DBConnectionHandler() as db:
             data = db.session.query(MusicGallery).filter(MusicGallery.music_publish_year == music_publish_year).all()
 
@@ -65,7 +64,7 @@ class MusicGalleryRepository:
             
             return output_json
         
-    def insertTitle(self, data:dict) -> any:
+    def insertTitle(self, data:dict) -> dict:
         with DBConnectionHandler() as db:
             try:
                 if not self.__valideInsert(data):
