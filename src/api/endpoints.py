@@ -1,7 +1,7 @@
 from src.api import app
 from flask import request
 from src.utils import ERROR
-from src.databases.sqlite.infra.repository.Music_Gallery_repository import MusicGalleryRepository
+from src.databases.sqlite.infra.repositories.Music_Gallery_repository import MusicGalleryRepository
 
 
 @app.route('/select/<title>', methods=['GET'])
