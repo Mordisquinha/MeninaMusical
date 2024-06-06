@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 cerberus = "*"
 sqlalchemy = "*"
+flask = "*"
+flasgger = "*"
 
 [dev-packages]
 
